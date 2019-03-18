@@ -9,26 +9,38 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var label2: UILabel!
-    @IBOutlet weak var label3: UILabel!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var rangeLabel: UILabel!
+    @IBOutlet weak var numberTextField: UITextField!
+    
+    var selectedSpell: [String: Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //numberTextField.keyboardType = UIKeyboardType.numberPad
+        
         
     }
     
-    @IBAction func buttonPress(_ sender: Any) {
-        updateView()
+    @IBAction func GetSpell(_ sender: Any) {
+        getSpellFromIndex()
     }
     
     func updateView() {
-        label1.text = Spell.spellName
-        label2.text = Spell.spellDescription
-        label3.text = Spell.range
+        
     }
     
-
+    func getSpellFromIndex() {
+        SpellReferencePath.spellPath.createSpellLibrary { (spellIndex) in
+            DispatchQueue.main.async {
+                guard let selectedSpell = self.selectedSpell else { return }
+                self.descriptionLabel.text = selectedSpell["desc"] as? String
+             //   guard let description = spellIndex["desc"] as? [String: Any], let firstDescription = description.first else { return }
+             //   self.descriptionLabel.text = firstDescription
+            }
+        }
+    }
 }
 
