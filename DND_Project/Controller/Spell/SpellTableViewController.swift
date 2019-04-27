@@ -11,14 +11,19 @@ import UIKit
 
 class SpellTableViewController: UITableViewController {
     
+    @IBOutlet weak var cancelButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
     var spellArray: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        cancelButtonOutlet.isEnabled = false
         SpellReferencePath.spellPath.createSpellLibrary { (spellIndex) in
+            
+            self.spellArray = spellIndex
+            
             DispatchQueue.main.async {
-                self.spellArray = spellIndex
                 self.tableView.reloadData()
             }
         }
