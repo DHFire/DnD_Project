@@ -29,7 +29,6 @@ class SpellReferencePath {
                     }
                     
                     if let completion = completion {
-                        
                         completion(spellArray)
                     }
             }

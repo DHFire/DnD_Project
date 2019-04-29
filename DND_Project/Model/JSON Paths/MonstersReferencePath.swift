@@ -29,7 +29,6 @@ class MonsterReferencePath {
                 }
                 
                 if let completion = completion {
-                    
                     completion(monsterArray)
                 }
             }

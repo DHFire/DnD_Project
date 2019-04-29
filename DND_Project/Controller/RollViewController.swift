@@ -18,10 +18,8 @@ class RollViewController: UIViewController {
     // MARK: - IBOutlets and Initializers
     @IBOutlet weak var totalValueLabel: UILabel!
     @IBOutlet weak var equationLabel: UILabel!
-    @IBOutlet weak var numberView: UIView!
     
     var equation: String = ""
-    var space: String = " "
     var diceSwitch = 0
     
     
@@ -107,6 +105,8 @@ class RollViewController: UIViewController {
         equationLabel.text = equation
         totalValueLabel.text = "0"
     }
+    
+    // MARK: - Roll Button
     @IBAction func rollButtonPressed(_ sender: Any) {
         var spacelessEquation = equation.split(separator: " ")
         var valuesArray: [Int] = []
@@ -135,9 +135,12 @@ class RollViewController: UIViewController {
                 identifier = 0
                 let rollValues = substringValue1.split(separator: "d")
                 let dice = parse(String(rollValues[0]))
-                let sides = parse(String(rollValues[1]))
-                let value1 = diceRoll(amount: dice, diceSides: sides)
-                valuesArray.append(value1)
+                let isValidIndex = rollValues.indices.contains(1)
+                if isValidIndex == true {
+                    let sides: Int? = parse(String(rollValues[1]))
+                    let value1 = diceRoll(amount: dice, diceSides: sides) ?? 0
+                    valuesArray.append(value1)
+                }
             } else {
                 let value1 = parse(String(substringValue1))
                 valuesArray.append(value1)
@@ -156,9 +159,12 @@ class RollViewController: UIViewController {
                 identifier = 0
                 let rollValues = substringValue2.split(separator: "d")
                 let dice = parse(String(rollValues[0]))
-                let sides = parse(String(rollValues[1]))
-                let value2 = diceRoll(amount: dice, diceSides: sides)
-                valuesArray.append(value2)
+                let isValidIndex = rollValues.indices.contains(1)
+                if isValidIndex == true {
+                    let sides: Int? = parse(String(rollValues[1]))
+                    let value2 = diceRoll(amount: dice, diceSides: sides) ?? 0
+                    valuesArray.append(value2)
+                }
             } else {
                 let value2 = parse(String(substringValue2))
                 valuesArray.append(value2)
@@ -166,6 +172,7 @@ class RollViewController: UIViewController {
         }
         
         if spacelessEquation.count > 1 {
+            
             for object in spacelessEquation {
                 if object == "+" || object == "-" {
                     equatorCount += 1
@@ -173,10 +180,11 @@ class RollViewController: UIViewController {
             }
             
             for i in 1...equatorCount {
+                
                 if i == 1 {
                     if spacelessEquation[1] == "+" {
                         appendTotalArray()
- 
+                        
                         let addTotal = valuesArray[0] + valuesArray[1]
                         totalsArray.append(addTotal)
                         
@@ -191,10 +199,7 @@ class RollViewController: UIViewController {
                     var identifier = 0
                     let equator = spacelessEquation[0]
                     let subValue = spacelessEquation[1]
-                    
-                    for _ in 0...1 {
-                        spacelessEquation.removeFirst()
-                    }
+                    spacelessEquation.removeFirst() ; spacelessEquation.removeFirst()
                     
                     if equator == "+" {
                         for character in subValue {
@@ -208,9 +213,12 @@ class RollViewController: UIViewController {
                             identifier = 0
                             let rollValue = subValue.split(separator: "d")
                             let dice = parse(String(rollValue[0]))
-                            let sides = parse(String(rollValue[1]))
-                            let value = diceRoll(amount: dice, diceSides: sides)
-                            valuesArray.append(value)
+                            let isValidIndex = rollValue.indices.contains(1)
+                            if isValidIndex == true {
+                                let sides: Int? = parse(String(rollValue[1]))
+                                let value = diceRoll(amount: dice, diceSides: sides) ?? 0
+                                valuesArray.append(value)
+                            }
                         } else {
                             let value = parse(String(subValue))
                             valuesArray.append(value)
@@ -230,15 +238,18 @@ class RollViewController: UIViewController {
                             identifier = 0
                             let rollValue = subValue.split(separator: "d")
                             let dice = parse(String(rollValue[0]))
-                            let sides = parse(String(rollValue[1]))
-                            let value = diceRoll(amount: dice, diceSides: sides)
-                            valuesArray.append(-value)
+                            let isValidIndex = rollValue.indices.contains(1)
+                            if isValidIndex == true {
+                                let sides: Int? = parse(String(rollValue[1]))
+                                let value = diceRoll(amount: dice, diceSides: sides) ?? 0
+                                valuesArray.append(value)
+                            }
                         } else {
                             let value = parse(String(subValue))
-                            valuesArray.append(-value)
+                            valuesArray.append(value)
                         }
                         
-                        let subtractTotal = valuesArray[0] - valuesArray[1]
+                        let subtractTotal = (-valuesArray[0]) + (-valuesArray[1])
                         totalsArray.append(subtractTotal)
                     }
                 }
@@ -258,9 +269,12 @@ class RollViewController: UIViewController {
                 identifier = 0
                 let rollValues = substringValue.split(separator: "d")
                 let dice = parse(String(rollValues[0]))
-                let sides = parse(String(rollValues[1]))
-                let value = diceRoll(amount: dice, diceSides: sides)
-                totalsArray.append(value)
+                let isValidIndex = rollValues.indices.contains(1)
+                if isValidIndex == true {
+                    let sides: Int? = parse(String(rollValues[1]))
+                    let value = diceRoll(amount: dice, diceSides: sides) ?? 0
+                    totalsArray.append(value)
+                }
             } else {
                 let value = parse(String(substringValue))
                 totalsArray.append(value)
@@ -268,12 +282,13 @@ class RollViewController: UIViewController {
         } else {
             print("This is the thing saying the roll function sucks.")
         }
+        
         for number in totalsArray {
             total += number
         }
-        totalValueLabel.text = "\(total)"
         
-    }
+        totalValueLabel.text = "\(total)"
+    } // Ending roll button pressed action.
     
     
     // MARK: - Functions
@@ -290,35 +305,38 @@ class RollViewController: UIViewController {
             equation.append("d\(diceSides)")
         }
     }
-    func parse(_ s: String) -> Int {
-        guard let value = Int(s, radix: 10) else { return 0 }
+    func parse(_ s: String?) -> Int {
+        guard let s = s,
+            let value = Int(s, radix: 10) else { return 0 }
         return value
     }
-    func diceRoll(amount numberOfDiceRolled: Int, diceSides: Int) -> Int /* IntResult */ {
+    func diceRoll(amount numberOfDiceRolled: Int, diceSides: Int?) -> Int? /* IntResult */ {
         var count = 0
         var total = 0
         var randomNumber: Int = 0
         //        var numArray: [Int] = []
-        
-        switch numberOfDiceRolled {
+        if let sides = diceSides {
             
-        case 1:
-            
-            randomNumber = Int.random(in: 1...diceSides)
-            return randomNumber
-            
-        default:
-            
-            while count < numberOfDiceRolled {
-                count += 1
-                randomNumber = Int.random(in: 1...diceSides)
-                //                numArray.append(randomNumber)
-                total += randomNumber
+            switch numberOfDiceRolled {
+                
+            case 1:
+                randomNumber = Int.random(in: 1...sides)
+                return randomNumber
+                
+            default:
+                
+                while count < numberOfDiceRolled {
+                    count += 1
+                    randomNumber = Int.random(in: 1...sides)
+                    //                numArray.append(randomNumber)
+                    total += randomNumber
+                }
+                
+                return total
             }
-            
-            return total
+        } else {
+            return nil
         }
-        
     }
 }
 
