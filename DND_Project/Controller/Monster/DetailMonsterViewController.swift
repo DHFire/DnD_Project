@@ -39,7 +39,7 @@ class DetailMonsterViewController: UIViewController {
     var monConditionImmunities: String = ""
     var monLanguages: String = ""
     var monSenses: String = ""
-    var monCR: Int? = nil
+    var monCR: Any = 0
     var monSpecialAbilities: [Dictionary<String, Any>]? = nil
     var monActions: [Dictionary<String, Any>]? = nil
     
@@ -84,7 +84,11 @@ class DetailMonsterViewController: UIViewController {
             self.monConditionImmunities = selectedMonster["condition_immunities"] as! String
             self.monSenses = selectedMonster["senses"] as! String
             self.monLanguages = selectedMonster["languages"] as! String
-            self.monCR = selectedMonster["challenge_rating"] as? Int ?? 0
+            if let cr = (selectedMonster["challenge_rating"] as? Int) {
+                self.monCR = cr
+            } else {
+                self.monCR = "None"
+            }
             self.monSpecialAbilities = selectedMonster["special_abilities"] as? [Dictionary<String, Any>]
             self.monActions = selectedMonster["actions"] as? [Dictionary<String, Any>]
             
@@ -113,9 +117,9 @@ Health: \(self.monHealth)
 Hit Dice: \(self.monHitDice)
 Speed: \(self.monSpeed)
                 
-STR: \(self.monStrength)   WIS: \(self.monWisdom)
-DEX: \(self.monDexterity)   INT: \(self.monIntelligence)
-CON: \(self.monConstitution)   CHA: \(self.monCharisma)
+STR: \(self.monStrength)     WIS: \(self.monWisdom)
+DEX: \(self.monDexterity)     INT: \(self.monIntelligence)
+CON: \(self.monConstitution)     CHA: \(self.monCharisma)
 
 Vulnerabilities: \(self.monVulnerabilities)
 Resistances: \(self.monResistances)

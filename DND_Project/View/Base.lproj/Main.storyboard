@@ -54,12 +54,7 @@
                             <outlet property="delegate" destination="UWZ-BX-cUR" id="H2D-c6-6Js"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Spells" id="o42-vm-hDb">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Cancel" id="0aA-xF-9qH"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="cancelButtonOutlet" destination="0aA-xF-9qH" id="ZZP-aO-kdP"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Spells" id="o42-vm-hDb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9h-e8-V1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,13 +126,13 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="X0a-r0-qPA"/>
                                             <constraint firstAttribute="height" constant="90" id="mez-lb-BZw"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="90"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="100"/>
                                         <color key="textColor" red="0.85856541450000001" green="0.85856541450000001" blue="0.85856541450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IY-J3-LcI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IY-J3-LcI">
                                         <rect key="frame" x="8" y="45" width="398" height="85"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
                                         <color key="textColor" red="0.85856541450000001" green="0.85856541450000001" blue="0.85856541450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
