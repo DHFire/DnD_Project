@@ -12,6 +12,10 @@ enum IntResult {
     case array([Int])
     case int(Int)
 }
+enum Equation: String {
+    case plus = "+"
+    case minus = "-"
+}
 
 class RollViewController: UIViewController {
     
@@ -21,7 +25,6 @@ class RollViewController: UIViewController {
     
     var equation: String = ""
     var diceSwitch = 0
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,74 +112,38 @@ class RollViewController: UIViewController {
     @IBAction func rollButtonPressed(_ sender: Any) {
         var spacelessEquation = equation.split(separator: " ")
         var valuesArray: [Int] = []
-        var totalsArray: [Int] = []
         var equatorCount = 0
         var total = 0
         var counter = 0
         var identifier = 0
         
-        func appendTotalArray() {
-            let substringValue1 = spacelessEquation[0]
-            let substringValue2 = spacelessEquation[2]
-            var identifier = 0
-            
-            for _ in 1...3 {
-                spacelessEquation.removeFirst()
-            }
-            
-            for character in substringValue1 {
-                if character == "d" {
-                    identifier = 1
-                    break
-                }
-            }
-            
-            if identifier == 1 {
-                identifier = 0
-                let rollValues = substringValue1.split(separator: "d")
-                let dice = parse(String(rollValues[0]))
-                let isValidIndex = rollValues.indices.contains(1)
-                if isValidIndex == true {
-                    let sides: Int = parse(String(rollValues[1]))
-                    let value1 = diceRoll(amount: dice, diceSides: sides)
-                    valuesArray.append(value1)
-                }
-            } else {
-                let value1 = parse(String(substringValue1))
-                valuesArray.append(value1)
-            }
-            
-            identifier = 0
-            
-            for character in substringValue2 {
-                if character == "d" {
-                    identifier = 1
-                    break
-                }
-            }
-            
-            if identifier == 1 {
-                identifier = 0
-                let rollValues = substringValue2.split(separator: "d")
-                let dice = parse(String(rollValues[0]))
-                let isValidIndex = rollValues.indices.contains(1)
-                if isValidIndex == true {
-                    let sides: Int = parse(String(rollValues[1]))
-                    let value2 = diceRoll(amount: dice, diceSides: sides)
-                    valuesArray.append(value2)
-                }
-            } else {
-                let value2 = parse(String(substringValue2))
-                valuesArray.append(value2)
-            }
-        }
-        func removeValue() {
-            valuesArray.removeFirst() ; valuesArray.removeFirst()
-        }
         func checkForDice(_ object: String.SubSequence) {
             for character in object {
                 if character == "d" {
                     identifier = 1
+                }
+            }
+        }
+        func appendValueArray(_ substringValue: String.SubSequence, equate: Equation) {
+            if identifier == 1 {
+                identifier = 0
+                let diceComponentsArray = substringValue.split(separator: "d")
+                let dice = parse(String(diceComponentsArray[0]))
+                if diceComponentsArray.indices.contains(1) {
+                    let sides = parse(String(diceComponentsArray[1]))
+                    let value = diceRoll(amount: dice, diceSides: sides)
+                    if equate == .plus {
+                        valuesArray.append(value)
+                    } else if equate == .minus {
+                        valuesArray.append(-value)
+                    }
+                }
+            } else {
+                let value = parse(String(substringValue))
+                if equate == .plus {
+                    valuesArray.append(value)
+                } else if equate == .minus {
+                    valuesArray.append(-value)
                 }
             }
         }
@@ -190,132 +157,31 @@ class RollViewController: UIViewController {
         if spacelessEquation.count == 1 {
             let substringValue = spacelessEquation[0]
             checkForDice(substringValue)
-            
+            appendValueArray(substringValue, equate: .plus)
         } else if spacelessEquation.count > 1 {
-            
+            let substringValue = spacelessEquation.removeFirst()
+            checkForDice(substringValue)
+            appendValueArray(substringValue, equate: .plus)
+            for _ in 1...equatorCount {
+                var equator: Equation = .plus
+                let plusOrMinus = spacelessEquation.removeFirst()
+                if plusOrMinus == "+" {
+                    equator = .plus
+                } else if plusOrMinus == "-" {
+                    equator = .minus
+                }
+                checkForDice(spacelessEquation[0])
+                appendValueArray(spacelessEquation[0], equate: equator)
+                spacelessEquation.removeFirst()
+            }
         }
         
-        /*
-         if spacelessEquation.count > 1 {
-         
-         for object in spacelessEquation {
-         if object == "+" || object == "-" {
-         equatorCount += 1
-         }
-         }
-         
-         for i in 1...equatorCount {
-         
-         if i == 1 {
-         if spacelessEquation[1] == "+" {
-         appendTotalArray()
-         
-         let addTotal = valuesArray[0] + valuesArray[1]
-         totalsArray.append(addTotal)
-         removeValue()
-         } else if spacelessEquation[1] == "-" {
-         appendTotalArray()
-         
-         let subtractTotal = valuesArray[0] - valuesArray[1]
-         totalsArray.append(subtractTotal)
-         removeValue()
-         counter += 1
-         }
-         } else {
-         let equator = spacelessEquation[0]
-         let subValue = spacelessEquation[1]
-         spacelessEquation.removeFirst() ; spacelessEquation.removeFirst()
-         
-         if equator == "+" {
-         for character in subValue {
-         if character == "d" {
-         identifier = 1
-         break
-         }
-         }
-         
-         if identifier == 1 {
-         identifier = 0
-         let rollValue = subValue.split(separator: "d")
-         let dice = parse(String(rollValue[0]))
-         let isValidIndex = rollValue.indices.contains(1)
-         if isValidIndex == true {
-         let sides: Int? = parse(String(rollValue[1]))
-         let value = diceRoll(amount: dice, diceSides: sides)
-         valuesArray.append(value)
-         }
-         } else {
-         let value = parse(String(subValue))
-         valuesArray.append(value)
-         }
-         
-         let addTotal = valuesArray[0] + valuesArray[1]
-         totalsArray.append(addTotal)
-         removeValue()
-         } else if equator == "-" {
-         for character in subValue {
-         if character == "d" {
-         identifier = 1
-         break
-         }
-         }
-         
-         if identifier == 1 {
-         identifier = 0
-         let rollValue = subValue.split(separator: "d")
-         let dice = parse(String(rollValue[0]))
-         let isValidIndex = rollValue.indices.contains(1)
-         if isValidIndex == true {
-         let sides: Int? = parse(String(rollValue[1]))
-         let value = diceRoll(amount: dice, diceSides: sides)
-         valuesArray.append(value)
-         }
-         } else {
-         let value = parse(String(subValue))
-         valuesArray.append(value)
-         }
-         
-         let subtractTotal = (-valuesArray[0]) + (-valuesArray[1])
-         totalsArray.append(subtractTotal)
-         }
-         }
-         }
-         
-         } else if spacelessEquation.count == 1 {
-         let substringValue = spacelessEquation[0]
-         var identifier = 0
-         for character in substringValue {
-         if character == "d" {
-         identifier = 1
-         break
-         }
-         }
-         
-         if identifier == 1 {
-         identifier = 0
-         let rollValues = substringValue.split(separator: "d")
-         let dice = parse(String(rollValues[0]))
-         let isValidIndex = rollValues.indices.contains(1)
-         if isValidIndex == true {
-         let sides: Int? = parse(String(rollValues[1]))
-         let value = diceRoll(amount: dice, diceSides: sides)
-         totalsArray.append(value)
-         }
-         } else {
-         let value = parse(String(substringValue))
-         totalsArray.append(value)
-         }
-         } else {
-         print("This is the thing saying the roll function sucks.")
-         }
-         */
-        
-        for number in totalsArray {
+        for number in valuesArray {
             total += number
         }
         
         totalValueLabel.text = "\(total)"
-    } // Ending roll button pressed action.
+    }
     
     // MARK: - Functions
     func appendWithOne(_ diceSides: Int) {
