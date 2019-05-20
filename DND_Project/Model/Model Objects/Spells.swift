@@ -23,7 +23,7 @@ struct Spell: Decodable {
     var spellComponents: String
     var spellCastingTime: String
     var spellHigherLevel: String
-    var spellDescription: String
+    var spellDesc: String
     var spellConcentration: String
     
     // MARK: - Coding Keys
@@ -49,10 +49,10 @@ struct Spell: Decodable {
         self.spellIndex = try baseContainer.decode(Int.self, forKey: CodingKeys.index)
         self.spellLevel = try baseContainer.decode(Int.self, forKey: CodingKeys.level)
         self.spellName = try baseContainer.decode(String.self, forKey: CodingKeys.name)
+        self.spellDesc = try baseContainer.decode(String.self, forKey: CodingKeys.desc)
         self.spellRange = try baseContainer.decode(String.self, forKey: CodingKeys.range)
         self.spellRitual = try baseContainer.decode(String.self, forKey: CodingKeys.ritual)
         self.spellSchool = try baseContainer.decode(String.self, forKey: CodingKeys.school)
-        self.spellDescription = try baseContainer.decode(String.self, forKey: CodingKeys.desc)
         self.spellDuration = try baseContainer.decode(String.self, forKey: CodingKeys.duration)
         self.spellMaterials = try baseContainer.decode(String.self, forKey: CodingKeys.material)
         self.spellComponents = try baseContainer.decode(String.self, forKey: CodingKeys.components)

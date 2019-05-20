@@ -44,7 +44,6 @@
 		BC74C0D8223F0339000FCA46 /* MonsterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74C0D7223F0339000FCA46 /* MonsterTableViewCell.swift */; };
 		BC74C0DA223F1D4C000FCA46 /* DetailSpellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74C0D9223F1D4C000FCA46 /* DetailSpellViewController.swift */; };
 		BC74C0DC223F1DFE000FCA46 /* DetailMonsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74C0DB223F1DFE000FCA46 /* DetailMonsterViewController.swift */; };
-		BCD26274224B949900806CD0 /* HoldDis.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD26273224B949900806CD0 /* HoldDis.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,7 +86,6 @@
 		BC74C0D7223F0339000FCA46 /* MonsterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterTableViewCell.swift; sourceTree = "<group>"; };
 		BC74C0D9223F1D4C000FCA46 /* DetailSpellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSpellViewController.swift; sourceTree = "<group>"; };
 		BC74C0DB223F1DFE000FCA46 /* DetailMonsterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMonsterViewController.swift; sourceTree = "<group>"; };
-		BCD26273224B949900806CD0 /* HoldDis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoldDis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +173,6 @@
 			children = (
 				BC0FD5AB2211C63B00661E37 /* CharacterSheet.swift */,
 				BC681C64220DD43E00B1C669 /* Spells.swift */,
-				BCD26273224B949900806CD0 /* HoldDis.swift */,
 			);
 			path = "Model Objects";
 			sourceTree = "<group>";
@@ -335,7 +332,6 @@
 			files = (
 				BC74C0DA223F1D4C000FCA46 /* DetailSpellViewController.swift in Sources */,
 				BC74C0D8223F0339000FCA46 /* MonsterTableViewCell.swift in Sources */,
-				BCD26274224B949900806CD0 /* HoldDis.swift in Sources */,
 				BC23A13A225175DD0012EB0D /* RollViewController.swift in Sources */,
 				BC0C2160222D890F00EFF356 /* MonsterTableViewController.swift in Sources */,
 				BC681C65220DD43E00B1C669 /* Spells.swift in Sources */,
@@ -492,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y2RHWPT2HS;
 				INFOPLIST_FILE = DND_Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y2RHWPT2HS;
 				INFOPLIST_FILE = DND_Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

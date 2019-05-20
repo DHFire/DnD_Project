@@ -18,13 +18,6 @@ class DetailSpellViewController: UIViewController {
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        updateIndex()
-    }
-
     var selectedSpell: [String: Any]?
     var spellName: String = ""
     var spellLevel: Int = 0
@@ -37,7 +30,17 @@ class DetailSpellViewController: UIViewController {
     var spellRitual: String = ""
     var spellDuration: String = ""
     var spellSchool: String = ""
+    var spellHigherLevel: String = ""
     var spellClasses: [Dictionary<String, String>] = [Dictionary()]
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        updateIndex()
+        //self.title = spellName
+    }
+
     
     func updateIndex() {
         
@@ -52,6 +55,7 @@ class DetailSpellViewController: UIViewController {
             self.spellDuration = selectedSpell["duration"] as! String
             self.spellConcentration = selectedSpell["concentration"] as! String
             self.spellMaterial = selectedSpell["material"] as? String
+            self.spellHigherLevel = selectedSpell["higher_level"] as? String ?? ""
             var componentsArray = selectedSpell["components"] as! [String]
             for _ in componentsArray {
                 self.spellComponents = "\(self.spellComponents) " + componentsArray.removeFirst()

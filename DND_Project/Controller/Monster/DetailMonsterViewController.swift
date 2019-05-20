@@ -11,6 +11,7 @@ import UIKit
 class DetailMonsterViewController: UIViewController {
 
     // MARK: - Variable Declaration
+    var monsterStatArray: [String] = []
     var notAvailable: String = "N/A"
     var monName: String = ""
     var monSize: String = ""
@@ -32,6 +33,7 @@ class DetailMonsterViewController: UIViewController {
     var monINTsave: Int? = nil
     var monWISsave: Int? = nil
     var monCHAsave: Int? = nil
+    
     // Monster Skills
     var monVulnerabilities: String = ""
     var monResistances: String = ""
@@ -46,9 +48,11 @@ class DetailMonsterViewController: UIViewController {
     @IBOutlet weak var monsterNameLabel: UILabel!
     @IBOutlet weak var monsterTextView: UITextView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        monsterStatArray = [monName, monSize, monType, monAlignment, monVulnerabilities, monImmunities, monConditionImmunities, monResistances, monSenses, monLanguages]
         updateMonster()
     }
     
@@ -98,6 +102,9 @@ class DetailMonsterViewController: UIViewController {
             if self.monResistances == "" {
                 self.monResistances = "None"
             }
+            if self.monLanguages == "" {
+                self.monLanguages = "None"
+            }
             if self.monImmunities == "" {
                 self.monImmunities = "None"
             }
@@ -105,29 +112,28 @@ class DetailMonsterViewController: UIViewController {
                 self.monConditionImmunities = "None"
             }
             
-            
             DispatchQueue.main.async {
                 self.monsterNameLabel.text = self.monName
                 self.monsterTextView.text = """
-Size: \(self.monSize)
-Type: \(self.monType)
-Alignment: \(self.monAlignment)
-Armor Class: \(self.monAC)
-Health: \(self.monHealth)
-Hit Dice: \(self.monHitDice)
-Speed: \(self.monSpeed)
+Size:    \(self.monSize)
+Type:    \(self.monType)
+Alignment:    \(self.monAlignment)
+Armor Class:    \(self.monAC)
+Health:   \(self.monHealth)
+Hit Dice:    \(self.monHitDice)
+Speed:     \(self.monSpeed)
                 
 STR: \(self.monStrength)     WIS: \(self.monWisdom)
 DEX: \(self.monDexterity)     INT: \(self.monIntelligence)
 CON: \(self.monConstitution)     CHA: \(self.monCharisma)
 
-Vulnerabilities: \(self.monVulnerabilities)
-Resistances: \(self.monResistances)
-Immunities: \(self.monImmunities)
-Condition Immunities: \(self.monConditionImmunities)
-Senses: \(self.monSenses)
-Languages: \(self.monLanguages)
-Challenge Rating: \(self.monCR)
+Vulnerabilities:    \(self.monVulnerabilities)
+Resistances:    \(self.monResistances)
+Immunities:    \(self.monImmunities)
+Condition Immunities:    \(self.monConditionImmunities)
+Senses:    \(self.monSenses)
+Languages:    \(self.monLanguages)
+Challenge Rating:    \(self.monCR)
 """
             }
         }
@@ -136,5 +142,5 @@ Challenge Rating: \(self.monCR)
             
         }
     }
-    
 }
+
