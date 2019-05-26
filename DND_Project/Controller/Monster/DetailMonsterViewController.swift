@@ -138,9 +138,9 @@ Challenge Rating:    \(self.monCR)
             }
         }
         
-        func monsterAbilitiesFunc() {
-            
-        }
+//        func monsterAbilitiesFunc() {
+//
+//        }
     }
 }
 

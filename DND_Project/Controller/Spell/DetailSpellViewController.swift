@@ -17,6 +17,7 @@ class DetailSpellViewController: UIViewController {
     @IBOutlet weak var componentsLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var materialsButton: UIButton!
     
     var selectedSpell: [String: Any]?
     var spellName: String = ""
@@ -37,11 +38,26 @@ class DetailSpellViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        materialsButton.isEnabled = false
+        materialsButton.isHidden = true
+        
         updateIndex()
-        //self.title = spellName
+        self.title = spellName
     }
 
+    @IBAction func materialsButtonPressed(_ sender: Any) {
+        materialAlert()
+    }
     
+    func materialAlert() {
+        
+        let alert = UIAlertController(title: "Materials", message: "\(spellMaterial ?? "Nothing")", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Back", style: UIAlertAction.Style.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+
     func updateIndex() {
         
         SpellReferencePath.spellPath.createSpellLibrary { (spellIndex) in
@@ -55,20 +71,25 @@ class DetailSpellViewController: UIViewController {
             self.spellDuration = selectedSpell["duration"] as! String
             self.spellConcentration = selectedSpell["concentration"] as! String
             self.spellMaterial = selectedSpell["material"] as? String
-            self.spellHigherLevel = selectedSpell["higher_level"] as? String ?? ""
-            var componentsArray = selectedSpell["components"] as! [String]
+            
+            var componentsArray = selectedSpell["components"] as? [String] ?? []
             for _ in componentsArray {
                 self.spellComponents = "\(self.spellComponents) " + componentsArray.removeFirst()
             }
             
-            var descriptionArray = selectedSpell["desc"] as! [String]
+            var descriptionArray = selectedSpell["desc"] as? [String] ?? []
             for _ in descriptionArray {
                 self.spellDescription = "\(self.spellDescription) " + descriptionArray.removeFirst()
             }
             
+            var higherLevelArray = selectedSpell["higher_level"] as? [String] ?? []
+            for _ in higherLevelArray {
+                self.spellDescription = "\(self.spellDescription) \(higherLevelArray.removeFirst())"
+            }
+            
             var schoolObject = selectedSpell["school"] as! Dictionary<String, String>
             
-            let ritualCast = selectedSpell["ritual"] as! String
+            let ritualCast = selectedSpell["ritual"] as? String ?? "no"
             if ritualCast == "yes" {
                 self.spellRitual = "(Ritual)"
             }
@@ -76,7 +97,12 @@ class DetailSpellViewController: UIViewController {
             self.spellSchool = schoolObject["name"] ?? "Fail"
             
             if self.spellMaterial != nil {
-                self.spellComponents = "\(self.spellComponents) (\(self.spellMaterial!))"
+                self.materialsButton.isEnabled = true
+                self.materialsButton.isHidden = false
+            }
+            
+            if self.spellHigherLevel != "" {
+                self.spellDescription = self.spellDescription + "\n" + self.spellHigherLevel
             }
             
             if self.spellConcentration == "yes" {
@@ -98,9 +124,13 @@ class DetailSpellViewController: UIViewController {
                 default:
                     self.levelLabel.text = "\(self.spellLevel)th-Level"
                 }
+                
                 self.levelLabel.text = "\(self.levelLabel.text!) \(self.spellSchool) \(self.spellRitual)"
                 
                 self.castingTimeLabel.text = "Casting Time: \(self.spellCastingTime)"
+            
+// self.castingTimeLabel.font = UIFont(name: "HelveticaNeue", size: 19.0)
+                
                 self.rangeLabel.text = "Range: \(self.spellRange)"
                 self.componentsLabel.text = "Components: \(self.spellComponents)"
                 self.durationLabel.text = "Duration: \(self.spellDuration)"
