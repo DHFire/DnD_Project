@@ -44,6 +44,7 @@
 		BC74C0D8223F0339000FCA46 /* MonsterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74C0D7223F0339000FCA46 /* MonsterTableViewCell.swift */; };
 		BC74C0DA223F1D4C000FCA46 /* DetailSpellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74C0D9223F1D4C000FCA46 /* DetailSpellViewController.swift */; };
 		BC74C0DC223F1DFE000FCA46 /* DetailMonsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC74C0DB223F1DFE000FCA46 /* DetailMonsterViewController.swift */; };
+		BCFA8B0522CFF28800136FBC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA8B0422CFF28800136FBC /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		BC74C0D7223F0339000FCA46 /* MonsterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterTableViewCell.swift; sourceTree = "<group>"; };
 		BC74C0D9223F1D4C000FCA46 /* DetailSpellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSpellViewController.swift; sourceTree = "<group>"; };
 		BC74C0DB223F1DFE000FCA46 /* DetailMonsterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMonsterViewController.swift; sourceTree = "<group>"; };
+		BCFA8B0422CFF28800136FBC /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +122,11 @@
 			isa = PBXGroup;
 			children = (
 				BC681C63220DD0D700B1C669 /* Model */,
-				BC681C66220DD67D00B1C669 /* View */,
+				BC079CAC220362E7006A02B9 /* LaunchScreen.storyboard */,
+				BC079CA4220362E3006A02B9 /* Main.storyboard */,
 				BC681C67220DD68B00B1C669 /* Controller */,
+				BC38B3F622D293B700190743 /* Spells */,
+				BC38B3F722D2944F00190743 /* Monsters */,
 				BC27F12C2209EB0D00E076C4 /* Compendium */,
 				BC079CAA220362E7006A02B9 /* Assets.xcassets */,
 				BC079CA0220362E3006A02B9 /* AppDelegate.swift */,
@@ -177,6 +182,26 @@
 			path = "Model Objects";
 			sourceTree = "<group>";
 		};
+		BC38B3F622D293B700190743 /* Spells */ = {
+			isa = PBXGroup;
+			children = (
+				BC0E07A2222984AE00080C5B /* SpellTableViewController.swift */,
+				BC0D2CD1223BFD9E00AC4ED2 /* SpellTableViewCell.swift */,
+				BC74C0D9223F1D4C000FCA46 /* DetailSpellViewController.swift */,
+			);
+			path = Spells;
+			sourceTree = "<group>";
+		};
+		BC38B3F722D2944F00190743 /* Monsters */ = {
+			isa = PBXGroup;
+			children = (
+				BC0C215F222D890F00EFF356 /* MonsterTableViewController.swift */,
+				BC74C0D7223F0339000FCA46 /* MonsterTableViewCell.swift */,
+				BC74C0DB223F1DFE000FCA46 /* DetailMonsterViewController.swift */,
+			);
+			path = Monsters;
+			sourceTree = "<group>";
+		};
 		BC681C63220DD0D700B1C669 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,43 +211,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		BC681C66220DD67D00B1C669 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BC079CAC220362E7006A02B9 /* LaunchScreen.storyboard */,
-				BC079CA4220362E3006A02B9 /* Main.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		BC681C67220DD68B00B1C669 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				BC23A139225175DD0012EB0D /* RollViewController.swift */,
-				BC74C0DE223F1E5F000FCA46 /* Spell */,
-				BC74C0DF223F1E6A000FCA46 /* Monster */,
+				BCFA8B0422CFF28800136FBC /* UIColor.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		BC74C0DE223F1E5F000FCA46 /* Spell */ = {
-			isa = PBXGroup;
-			children = (
-				BC0E07A2222984AE00080C5B /* SpellTableViewController.swift */,
-				BC0D2CD1223BFD9E00AC4ED2 /* SpellTableViewCell.swift */,
-				BC74C0D9223F1D4C000FCA46 /* DetailSpellViewController.swift */,
-			);
-			path = Spell;
-			sourceTree = "<group>";
-		};
-		BC74C0DF223F1E6A000FCA46 /* Monster */ = {
-			isa = PBXGroup;
-			children = (
-				BC0C215F222D890F00EFF356 /* MonsterTableViewController.swift */,
-				BC74C0D7223F0339000FCA46 /* MonsterTableViewCell.swift */,
-				BC74C0DB223F1DFE000FCA46 /* DetailMonsterViewController.swift */,
-			);
-			path = Monster;
 			sourceTree = "<group>";
 		};
 		BCC88C8A2241407400E214DE /* Frameworks */ = {
@@ -339,6 +334,7 @@
 				BC0E07A3222984AE00080C5B /* SpellTableViewController.swift in Sources */,
 				BC27F15E2209FB6400E076C4 /* SpellReferencePath.swift in Sources */,
 				BC0D2CD2223BFD9E00AC4ED2 /* SpellTableViewCell.swift in Sources */,
+				BCFA8B0522CFF28800136FBC /* UIColor.swift in Sources */,
 				BC1026F622172D0F001C0AF8 /* MonstersReferencePath.swift in Sources */,
 				BC74C0DC223F1DFE000FCA46 /* DetailMonsterViewController.swift in Sources */,
 				BC079CA1220362E3006A02B9 /* AppDelegate.swift in Sources */,

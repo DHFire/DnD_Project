@@ -33,6 +33,12 @@ class RollViewController: UIViewController {
         totalValueLabel.text = "0"
     }
     
+    @IBAction func sleeperAgent(_ sender: Any) {
+        sleep(4)
+    }
+    @IBAction func terminator(_ sender: Any) {
+        let ohNo: Int? = nil ; _ = ohNo!
+    }
     
     // MARK: - Number Button Press
     @IBAction func numberButtonPressed(_ sender: UIButton) {
@@ -116,7 +122,6 @@ class RollViewController: UIViewController {
     }
     
     // MARK: - Roll Button
-    
     @IBAction func rollButtonPressed(_ sender: Any) {
         
         var spacelessEquation = equation.split(separator: " ")
@@ -127,6 +132,7 @@ class RollViewController: UIViewController {
             var total = 0
             var counter = 0
             var identifier = 0
+            
             
             func checkForDice(_ object: String.SubSequence) {
                 for character in object {
@@ -158,6 +164,7 @@ class RollViewController: UIViewController {
                     }
                 }
             }
+            
             
             for object in spacelessEquation {
                 if object == "+" || object == "-" {

@@ -51,9 +51,11 @@ class DetailMonsterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        monsterStatArray = [monName, monSize, monType, monAlignment, monVulnerabilities, monImmunities, monConditionImmunities, monResistances, monSenses, monLanguages]
+                
         updateMonster()
+
+        monsterStatArray = [monName, monSize, monType, monAlignment, monVulnerabilities, monImmunities, monConditionImmunities, monResistances, monSenses, monLanguages]
+
     }
     
     var selectedMonster: [String: Any]?
