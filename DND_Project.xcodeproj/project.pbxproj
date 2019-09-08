@@ -61,12 +61,12 @@
 		BC1026F522172D0F001C0AF8 /* MonstersReferencePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonstersReferencePath.swift; sourceTree = "<group>"; };
 		BC23A139225175DD0012EB0D /* RollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollViewController.swift; sourceTree = "<group>"; };
 		BC27F1312209EBA500E076C4 /* 5e-SRD-Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Languages.json"; sourceTree = "<group>"; };
-		BC27F1322209EBA500E076C4 /* 5e-SRD-Ability-Scores.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Ability-Scores.json"; sourceTree = "<group>"; };
+		BC27F1322209EBA500E076C4 /* 5e-SRD-Ability-Scores.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Ability-Scores.json"; sourceTree = "<group>"; wrapsLines = 1; };
 		BC27F1332209EBA500E076C4 /* 5e-SRD-Weapon-Properties.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Weapon-Properties.json"; sourceTree = "<group>"; };
 		BC27F1342209EBA500E076C4 /* 5e-SRD-Spells.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Spells.json"; sourceTree = "<group>"; };
 		BC27F1352209EBA600E076C4 /* 5e-SRD-Classes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Classes.json"; sourceTree = "<group>"; };
 		BC27F1362209EBA600E076C4 /* 5e-SRD-Skills.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Skills.json"; sourceTree = "<group>"; };
-		BC27F1372209EBA600E076C4 /* 5e-SRD-Monsters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Monsters.json"; sourceTree = "<group>"; };
+		BC27F1372209EBA600E076C4 /* 5e-SRD-Monsters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Monsters.json"; sourceTree = "<group>"; wrapsLines = 1; };
 		BC27F1382209EBA600E076C4 /* 5e-SRD-Subraces.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Subraces.json"; sourceTree = "<group>"; };
 		BC27F1392209EBA600E076C4 /* 5e-SRD-Traits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Traits.json"; sourceTree = "<group>"; };
 		BC27F13A2209EBA600E076C4 /* 5e-SRD-Features.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5e-SRD-Features.json"; sourceTree = "<group>"; };
@@ -121,13 +121,9 @@
 		BC079C9F220362E3006A02B9 /* DND_Project */ = {
 			isa = PBXGroup;
 			children = (
+				BC6505A92305C29E00E3781D /* Storyboards */,
+				BC6505AA2305C2A500E3781D /* Objects */,
 				BC681C63220DD0D700B1C669 /* Model */,
-				BC079CAC220362E7006A02B9 /* LaunchScreen.storyboard */,
-				BC079CA4220362E3006A02B9 /* Main.storyboard */,
-				BC681C67220DD68B00B1C669 /* Controller */,
-				BC38B3F622D293B700190743 /* Spells */,
-				BC38B3F722D2944F00190743 /* Monsters */,
-				BC27F12C2209EB0D00E076C4 /* Compendium */,
 				BC079CAA220362E7006A02B9 /* Assets.xcassets */,
 				BC079CA0220362E3006A02B9 /* AppDelegate.swift */,
 				BC079CAF220362E7006A02B9 /* Info.plist */,
@@ -202,9 +198,29 @@
 			path = Monsters;
 			sourceTree = "<group>";
 		};
+		BC6505A92305C29E00E3781D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				BC079CAC220362E7006A02B9 /* LaunchScreen.storyboard */,
+				BC079CA4220362E3006A02B9 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		BC6505AA2305C2A500E3781D /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				BC38B3F622D293B700190743 /* Spells */,
+				BC38B3F722D2944F00190743 /* Monsters */,
+				BC27F12C2209EB0D00E076C4 /* Compendium */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
 		BC681C63220DD0D700B1C669 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BC681C67220DD68B00B1C669 /* Controller */,
 				BC1022222215BBA300B2B3E4 /* JSON Paths */,
 				BC2D8B282248F5AD00E58C35 /* Model Objects */,
 			);

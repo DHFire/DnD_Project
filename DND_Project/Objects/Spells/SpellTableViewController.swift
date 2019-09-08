@@ -9,14 +9,8 @@
 import Foundation
 import UIKit
 
-enum FirstLetters: String {
-    case a = "A", b = "B", c = "C", d = "D", e = "E", f = "F", g = "G", h = "H", i = "I", j = "J", k = "K", l = "L", m = "M", n = "N", o = "O", p = "P", q = "Q", r = "R", s = "S", t = "T", u = "U", v = "V", w = "W", x = "X", y = "Y", z = "Z"
-}
-
 class SpellTableViewController: UITableViewController {
-    
     var spellArray: [[String: Any]] = []
-    var arrayA: [String] = [], arrayB: [String] = [], arrayC: [String] = [], arrayD: [String] = [], arrayE: [String] = []
     var yellowColor: UIColor = #colorLiteral(red: 0.8900027198, green: 0.6713432928, blue: 0.1288759967, alpha: 1)
     
     override func viewDidLoad() {
@@ -29,7 +23,9 @@ class SpellTableViewController: UITableViewController {
             }
         }
     }
-    
+}
+
+extension SpellTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nil
     }
@@ -45,7 +41,7 @@ class SpellTableViewController: UITableViewController {
         guard let cell = spellCell else { return UITableViewCell() }
         return cell
     }
-   
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return spellArray.count
     }
@@ -88,14 +84,11 @@ class SpellTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search Spells"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-
     }
 }
 
 extension SpellTableViewController: UISearchResultsUpdating {
-
     func updateSearchResults(for searchController: UISearchController) {
         
     }
 }
-
